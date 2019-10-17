@@ -9,8 +9,8 @@
 import UIKit
 
 protocol CountryListDetailInteractorInterface {
-  func getCity(request: CountryListDetail.getCity.Request)
-  var model: DataCountry? { get set}
+  func getCity(request: CountryListDetail.GetCity.Request)
+  var model: DataCountry? { get set }
 }
 
 class CountryListDetailInteractor: CountryListDetailInteractorInterface {
@@ -19,17 +19,19 @@ class CountryListDetailInteractor: CountryListDetailInteractorInterface {
   var model: DataCountry?
   
   // MARK: - Business logic
-  func getCity(request: CountryListDetail.getCity.Request) {
-    let codeName = model!
+  func getCity(request: CountryListDetail.GetCity.Request) {
+    presenter.presentLoadingCity()
+    guard let codeName = model else{
+      return
+    }
     
     worker?.doSomeWork(sent: codeName.countryCode) { [weak self] in
       if case let Result.success(data) = $0 {
-        let datamodel = data
-        self!.model?.countryCode = datamodel.data[0].countryCode
-        let response = CountryListDetail.getCity.Response(city: datamodel)
+        self?.model?.countryCode = data.data[0].countryCode
+        
+        let response = CountryListDetail.GetCity.Response(city: data)
         self?.presenter.presentCity(response: response)
       }
-      
     }
   }
 }

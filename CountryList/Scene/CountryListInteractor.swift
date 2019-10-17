@@ -17,12 +17,14 @@ class CountryListInteractor: CountryListInteractorInterface {
   var presenter: CountryListPresenterInterface!
   var worker: CountryListWorker?
   var modelCountry: Country?
+  
   // MARK: - Business logic
   func getCountry(request: CountryList.CountryModel.Request) {
+    presenter.presentCountryLoading()
     worker?.doSomeWork { [weak self] in
       if case let Result.success(data) = $0 {
         self?.modelCountry = data
-        let response = CountryList.CountryModel.Response(country: self!.modelCountry!)
+        let response = CountryList.CountryModel.Response(country: self?.modelCountry)
         self?.presenter.presentCountry(response: response)
       }else{
         print(ApiError.jsonError)
@@ -31,12 +33,19 @@ class CountryListInteractor: CountryListInteractorInterface {
   }
   
   func getSearch(request: CountryList.SearchCountry.Request) {
-    let textFieldSearch = request.searchCountry
-    let model = modelCountry!.data.filter({ (data) -> Bool in
-      return data.countryName.range(of: textFieldSearch) != nil
-    })
+    guard let textFieldSearch = request.searchCountry else{
+      return
+    }
+    if !(textFieldSearch.isEmpty){
+      let model = modelCountry?.data.filter({ (data) -> Bool in
+        return data.countryName.range(of: textFieldSearch,options: .caseInsensitive) != nil
+         })
+      let response = CountryList.SearchCountry.Response(country: model)
+      presenter.presentSearchCountry(response: response)
+    }else{
+      let response = CountryList.SearchCountry.Response(country: self.modelCountry?.data)
+      presenter.presentSearchCountry(response: response)
+    }
     
-    let response = CountryList.SearchCountry.Response(country: model)
-    presenter.presentSearchCountry(response: response)
   }
 }

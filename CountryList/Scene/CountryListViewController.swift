@@ -10,15 +10,19 @@ import UIKit
 protocol CountryListViewControllerInterface: class {
   func displayCountry(viewModel: CountryList.CountryModel.ViewModel)
   func displaySearchCountry(viewModel:CountryList.SearchCountry.ViewModel)
+  func displayLoading(hidden: Bool)
 }
 
 class CountryListViewController: UIViewController, CountryListViewControllerInterface {
+  
   var interactor: CountryListInteractorInterface!
   var router: CountryListRouter!
-  var country: [DataCountry] = []
+  
+  private var country: [DataCountry] = []
   
   @IBOutlet weak var loadingView: UIActivityIndicatorView!
   @IBOutlet weak var countryTableView: UITableView!
+  @IBOutlet weak var textField: UITextField!
   // MARK: - Object lifecycle
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -46,20 +50,18 @@ class CountryListViewController: UIViewController, CountryListViewControllerInte
     super.viewDidLoad()
     getCountry()
   }
-  
+  func displayLoading(hidden: Bool) {
+    loadingView.isHidden = hidden
+  }
   // MARK: - Event handling
   func getCountry() {
-    loadingView.isHidden = false
     let request = CountryList.CountryModel.Request()
     interactor.getCountry(request: request)
   }
   
   // MARK: - Display logic
   func displayCountry(viewModel: CountryList.CountryModel.ViewModel) {
-    sleep(2)
-    loadingView.isHidden = true
-    let newcountry = viewModel.country.data
-    country = newcountry
+    country = viewModel.country.data
     countryTableView.reloadData()
   }
   
@@ -69,18 +71,9 @@ class CountryListViewController: UIViewController, CountryListViewControllerInte
     countryTableView.reloadData()
   }
   
-  @IBOutlet weak var textField: UITextField!
-  @IBAction func textFieldsearch(_ sender: Any) {
-    guard let checkText = textField.text else {
-      return
-    }
-    if !checkText.isEmpty{
-      let requset = CountryList.SearchCountry.Request(searchCountry: checkText)
-      interactor.getSearch(request: requset)
-    }
-    else if checkText.isEmpty{
-      getCountry()
-    }
+  @IBAction func textFieldsearch(_ sender: UITextField) {
+    let requset = CountryList.SearchCountry.Request(searchCountry: sender.text)
+    interactor.getSearch(request: requset)
   }
   
   // MARK: - Router
@@ -99,13 +92,13 @@ extension CountryListViewController: UITableViewDataSource {
       return UITableViewCell()
     }
     
-    let countryList = country[indexPath.row].countryName
+    let countryList = country[indexPath.row]
     cell.setUi(country: countryList)
     return cell
   }
 }
 
-extension CountryListViewController: UITableViewDelegate{
+extension CountryListViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let countryIndex = country[indexPath.item]
     router.navigateToDetail(sender: countryIndex)

@@ -20,6 +20,7 @@ class CountryListDetailStore: CountryListDetailStoreProtocol {
     
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
       if let _ = error {
+        print(ApiError.jsonError)
         print("error")
       }
       else if let data = data, let response = response as? HTTPURLResponse {

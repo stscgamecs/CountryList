@@ -17,30 +17,31 @@ class CountryListDetailInteractorTest: XCTestCase {
     storeDetail = CountryListDetailStore()
   }
   
-    override func setUp() {
-      super.setUp()
-      setUpCountryDetail()
-    }
-
-    override func tearDown() {
-      super.tearDown()
-    }
+  override func setUp() {
+    super.setUp()
+    setUpCountryDetail()
+  }
+  
+  override func tearDown() {
+    super.tearDown()
+  }
   
   class CountryListDetailPresenterSpy: CountryListDetailPresenterInterface {
     var presentCity = false
-    func presentCity(response: CountryListDetail.getCity.Response) {
+    var presentLoadingCityCheck = false
+    func presentCity(response: CountryListDetail.GetCity.Response) {
       presentCity = true
     }
-    
-    
+    func presentLoadingCity() {
+         presentLoadingCityCheck = true
+    }
   }
+  
   class CountryListDetailWorkerSpy: CountryListDetailStoreProtocol {
     var checkStateFailure:Bool = false
     func getDataCity(sent city_name: String, _ completion: @escaping (Result<City, ApiError>) -> Void) {
       if checkStateFailure == false{
         completion(Result.success(.init(data: [.init(countryCode: "", countryName: "", capitalName: "")])))
-      }else{
-        completion(Result.failure(ApiError.jsonError))
       }
     }
   }
@@ -59,11 +60,12 @@ class CountryListDetailInteractorTest: XCTestCase {
     interactorDetail.presenter = presenterDetailSpy
     
     //when
-    let requestSpy = CountryListDetail.getCity.Request()
+    let requestSpy = CountryListDetail.GetCity.Request()
     interactorDetail.getCity(request: requestSpy)
     
     //then
     XCTAssert(presenterDetailSpy.presentCity,"Test GetCity() should ask PresentCity()")
+    XCTAssert(presenterDetailSpy.presentLoadingCityCheck,"Test GetCity() should ask PresentLoadingCity()")
   }
-
+  
 }

@@ -35,17 +35,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UFM-nv-5jk">
-                                                    <rect key="frame" x="5" y="5" width="404" height="90"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                    <rect key="frame" x="20" y="10" width="389" height="85"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="UFM-nv-5jk" secondAttribute="bottom" constant="5" id="9IG-Wu-6rA"/>
-                                                <constraint firstItem="UFM-nv-5jk" firstAttribute="top" secondItem="xY5-VM-lAx" secondAttribute="top" constant="5" id="Cwp-Dd-oFb"/>
+                                                <constraint firstItem="UFM-nv-5jk" firstAttribute="top" secondItem="xY5-VM-lAx" secondAttribute="top" constant="10" id="Cwp-Dd-oFb"/>
                                                 <constraint firstAttribute="trailing" secondItem="UFM-nv-5jk" secondAttribute="trailing" constant="5" id="pdh-qx-iLi"/>
-                                                <constraint firstItem="UFM-nv-5jk" firstAttribute="leading" secondItem="xY5-VM-lAx" secondAttribute="leading" constant="5" id="z6F-qP-FBz"/>
+                                                <constraint firstItem="UFM-nv-5jk" firstAttribute="leading" secondItem="xY5-VM-lAx" secondAttribute="leading" constant="20" id="z6F-qP-FBz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

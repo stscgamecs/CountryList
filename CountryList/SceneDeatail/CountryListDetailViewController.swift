@@ -9,10 +9,12 @@
 import UIKit
 
 protocol CountryListDetailViewControllerInterface: class {
-  func displayCity(viewModel: CountryListDetail.getCity.ViewModel)
+  func displayCity(viewModel: CountryListDetail.GetCity.ViewModel)
+  func displayLodingCity(hidden:Bool)
 }
 
 class CountryListDetailViewController: UIViewController, CountryListDetailViewControllerInterface {
+  
   var interactor: CountryListDetailInteractorInterface!
   var router: CountryListDetailRouter!
   var city: [DataCity] = []
@@ -48,20 +50,18 @@ class CountryListDetailViewController: UIViewController, CountryListDetailViewCo
     super.viewDidLoad()
     getCity()
   }
-
+  func displayLodingCity(hidden:Bool) {
+    loadingViewDetail.isHidden = hidden
+  }
   // MARK: - Event handling
   func getCity() {
-    loadingViewDetail.isHidden = false
-    let request = CountryListDetail.getCity.Request( )
-    interactor.getCity(request: request)
+    interactor.getCity(request: CountryListDetail.GetCity.Request())
   }
 
   // MARK: - Display logic
-  func displayCity(viewModel: CountryListDetail.getCity.ViewModel) {
-      sleep(2)
-    loadingViewDetail.isHidden = true
-    countryLabel.text = viewModel.city.data[0].countryName
-    cityLabel.text = viewModel.city.data[0].capitalName
+  func displayCity(viewModel: CountryListDetail.GetCity.ViewModel) {
+    countryLabel.text = viewModel.countryName
+    cityLabel.text = viewModel.cityName
   }
 
   // MARK: - Router

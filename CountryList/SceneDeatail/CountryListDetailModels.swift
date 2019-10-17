@@ -9,25 +9,27 @@
 import UIKit
 
 struct CountryListDetail {
-  struct getCity {
-  
+  struct GetCity {
+    
     struct Request {}
-   
+    
     struct Response {
       let city: City
     }
     
     struct ViewModel {
-      let city: City
+      let countryName: String
+      let cityName:String
+      
     }
   }
-  struct getCountry {
- 
-  struct Request {}
- 
-  struct Response {}
-  
-  struct ViewModel {}
+  struct GetCountry {
+    
+    struct Request {}
+    
+    struct Response {}
+    
+    struct ViewModel {}
   }
   
 }

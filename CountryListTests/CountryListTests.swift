@@ -22,12 +22,17 @@ class CountryListDetailPresenterTests: XCTestCase {
   }
   
   class CountryListDetailViewControllerSpy: CountryListDetailViewControllerInterface {
-    var displayCity = false
     
-    func displayCity(viewModel: CountryListDetail.getCity.ViewModel) {
+    var displayCity = false
+    var displayLodingCityCheck = false
+    func displayCity(viewModel: CountryListDetail.GetCity.ViewModel) {
       displayCity = true
     }
+    func displayLodingCity(hidden: Bool) {
+      displayLodingCityCheck = true
+    }
   }
+  
   func testPresentCityAskViewControllerToViewControllerDisplayCity() {
     
     //Given
@@ -36,11 +41,11 @@ class CountryListDetailPresenterTests: XCTestCase {
     
     
     //when
-    let responseSpy = CountryListDetail.getCity.Response(city: .init(data: []))
+    let responseSpy = CountryListDetail.GetCity.Response(city: .init(data: [DataCity.init(countryCode: "Th", countryName: "Thai", capitalName: "Bankkok")]))
     presenterDetail.presentCity(response: responseSpy)
     
     //then
     XCTAssert(viewModelSpy.displayCity,"Test PresentCity() should ask ViewController DisplayCity()")
-    
+    XCTAssert(viewModelSpy.displayLodingCityCheck,"Test PresentCity() should ask ViewController LodingCity()")
   }
 }

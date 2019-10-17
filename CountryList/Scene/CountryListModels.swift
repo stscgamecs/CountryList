@@ -15,7 +15,7 @@ struct CountryList {
     struct Request {}
     
     struct Response {
-      let country: Country
+      let country: Country?
     }
     
     struct ViewModel {
@@ -25,11 +25,11 @@ struct CountryList {
   
   struct SearchCountry {
     struct Request {
-      let searchCountry:String
+      let searchCountry: String?
     }
     
     struct Response {
-      let country: [DataCountry]
+      let country: [DataCountry]?
     }
     
     struct ViewModel {

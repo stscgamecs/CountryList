@@ -8,22 +8,28 @@
 import UIKit
 
 protocol CountryListPresenterInterface {
+  func presentCountryLoading()
   func presentCountry(response: CountryList.CountryModel.Response)
   func presentSearchCountry(response: CountryList.SearchCountry.Response)
 }
 
 class CountryListPresenter: CountryListPresenterInterface {
   weak var viewController: CountryListViewControllerInterface!
-  
   // MARK: - Presentation logic
+  func presentCountryLoading() {
+    viewController.displayLoading(hidden: false)
+  }
+  
   func presentCountry(response: CountryList.CountryModel.Response) {
-    let country = response.country
+     viewController.displayLoading(hidden: true)
+    guard let country = response.country else { return  }
     let viewModel = CountryList.CountryModel.ViewModel(country: country)
     viewController.displayCountry(viewModel: viewModel)
   }
   
   func presentSearchCountry(response: CountryList.SearchCountry.Response) {
-    let country = response.country
+    viewController.displayLoading(hidden: true)
+    guard let country = response.country else { return  }
     let viewModel = CountryList.SearchCountry.ViewModel(country: country)
     viewController.displaySearchCountry(viewModel: viewModel)
   }

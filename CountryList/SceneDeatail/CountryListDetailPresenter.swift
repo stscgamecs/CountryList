@@ -9,15 +9,23 @@
 import UIKit
 
 protocol CountryListDetailPresenterInterface {
-  func presentCity(response: CountryListDetail.getCity.Response)
+  func presentLoadingCity()
+  func presentCity(response: CountryListDetail.GetCity.Response)
 }
 
 class CountryListDetailPresenter: CountryListDetailPresenterInterface {
   weak var viewController: CountryListDetailViewControllerInterface!
 
   // MARK: - Presentation logic
-  func presentCity(response: CountryListDetail.getCity.Response) {
-    let viewModel = CountryListDetail.getCity.ViewModel(city: response.city)
+  func presentLoadingCity() {
+    viewController.displayLodingCity(hidden: false)
+  }
+  
+  func presentCity(response: CountryListDetail.GetCity.Response) {
+     viewController.displayLodingCity(hidden: true)
+    let responseCapitalName = response.city.data[0].capitalName
+    let responseCountryName = response.city.data[0].countryName
+    let viewModel = CountryListDetail.GetCity.ViewModel(countryName: responseCountryName, cityName: responseCapitalName)
     viewController.displayCity(viewModel: viewModel)
   }
 }

@@ -26,15 +26,20 @@ class CountryListInteractorTests: XCTestCase {
   }
   
   class CountryListPresenterSpy:CountryListPresenterInterface {
+    
     var presentCountry = false
     var presentSearchCountry = false
-    
+    var presentCountryLoadingCheck = false
     func presentCountry(response: CountryList.CountryModel.Response) {
       presentCountry = true
     }
     
     func presentSearchCountry(response: CountryList.SearchCountry.Response) {
       presentSearchCountry = true
+    }
+    
+    func presentCountryLoading() {
+      presentCountryLoadingCheck = true
     }
   }
   
@@ -66,6 +71,7 @@ class CountryListInteractorTests: XCTestCase {
     
     //then
     XCTAssert(presenterSpy.presentCountry,"Test GetCountry() should ask PresenterCountry()")
+    XCTAssert(presenterSpy.presentCountryLoadingCheck,"Test GetCountry() should ask PresenterCountryLoading()")
   }
   
   func testGetCountryAskPresenterToPresentCountryWhenFails() {
@@ -87,6 +93,7 @@ class CountryListInteractorTests: XCTestCase {
     
     //then
     XCTAssertFalse(presenterSpy.presentCountry,"Test GetCountry() should ask PresenterCountry()")
+    XCTAssert(presenterSpy.presentCountryLoadingCheck,"Test GetCountry() should ask PresenterCountryLoading()")
   }
   
   func testGetSearchAskPresenterToPresentSearchCountry() {
@@ -95,11 +102,25 @@ class CountryListInteractorTests: XCTestCase {
     interactor.presenter = presenterSpy
     let modelSpy: Country = .init(data: [.init(countryCode: "Th", countryName: "Thai")])
     interactor.modelCountry = modelSpy
-    let searchCountrySpy = "Th"
     
     //when
-    let requestSpy
-      = CountryList.SearchCountry.Request(searchCountry: searchCountrySpy)
+    let searchCountrySpy = "Th"
+    let requestSpy = CountryList.SearchCountry.Request(searchCountry: searchCountrySpy)
+    interactor.getSearch(request: requestSpy)
+    
+    //then
+    XCTAssert(presenterSpy.presentSearchCountry,"Test GetSearch should ask PresenterSearchCountry()")
+  }
+  func testGetSearchAskPresenterToPresentSearchCountryisEmpty() {
+    //Given
+    let presenterSpy = CountryListPresenterSpy()
+    interactor.presenter = presenterSpy
+    let modelSpy: Country = .init(data: [])
+    interactor.modelCountry = modelSpy
+    
+    //when
+    let searchCountrySpy = ""
+    let requestSpy = CountryList.SearchCountry.Request(searchCountry: searchCountrySpy)
     interactor.getSearch(request: requestSpy)
     
     //then

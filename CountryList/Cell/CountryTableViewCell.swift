@@ -16,7 +16,7 @@ class CountryTableViewCell: UITableViewCell {
     // Initialization code
   }
   
-  func setUi(country:String){
-    countryName.text = country
+  func setUi(country:DataCountry) {
+    countryName.text = country.countryName
   }
 }
