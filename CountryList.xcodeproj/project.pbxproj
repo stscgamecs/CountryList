@@ -34,6 +34,7 @@
 		4476798323570E01007DEB9B /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4476798223570E01007DEB9B /* City.swift */; };
 		44767985235767A8007DEB9B /* CountryListInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44767984235767A8007DEB9B /* CountryListInteractorTests.swift */; };
 		44767987235811E7007DEB9B /* CountryListPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44767986235811E7007DEB9B /* CountryListPresenterTests.swift */; };
+		447679892358189D007DEB9B /* CountryListDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447679882358189D007DEB9B /* CountryListDetailInteractor.swift */; };
 		4C90C88A663CC79199E6E279 /* Pods_CountryList_CountryListUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64ECB15F961B660CB9060A0C /* Pods_CountryList_CountryListUITests.framework */; };
 		9ABDB61516E8F869DEA03F6A /* Pods_CountryList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01592448A7B1DB155D1B736E /* Pods_CountryList.framework */; };
 		A7D9EF9E449FF84B24FB01E7 /* Pods_CountryListTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C07FA71731ED55A1435DF2E0 /* Pods_CountryListTests.framework */; };
@@ -94,6 +95,7 @@
 		4476798223570E01007DEB9B /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		44767984235767A8007DEB9B /* CountryListInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListInteractorTests.swift; sourceTree = "<group>"; };
 		44767986235811E7007DEB9B /* CountryListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListPresenterTests.swift; sourceTree = "<group>"; };
+		447679882358189D007DEB9B /* CountryListDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListDetailInteractor.swift; sourceTree = "<group>"; };
 		64ECB15F961B660CB9060A0C /* Pods_CountryList_CountryListUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CountryList_CountryListUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EA76B7187D8717987FD255A /* Pods-CountryListTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryListTests.release.xcconfig"; path = "Target Support Files/Pods-CountryListTests/Pods-CountryListTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F20E5E7D5FE8D946CB8672E /* Pods-CountryList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryList.debug.xcconfig"; path = "Target Support Files/Pods-CountryList/Pods-CountryList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		447679422356C250007DEB9B /* CountryListTests */ = {
 			isa = PBXGroup;
 			children = (
+				447679882358189D007DEB9B /* CountryListDetailInteractor.swift */,
 				44767986235811E7007DEB9B /* CountryListPresenterTests.swift */,
 				44767984235767A8007DEB9B /* CountryListInteractorTests.swift */,
 				447679432356C250007DEB9B /* CountryListTests.swift */,
@@ -525,6 +528,7 @@
 			files = (
 				44767985235767A8007DEB9B /* CountryListInteractorTests.swift in Sources */,
 				44767987235811E7007DEB9B /* CountryListPresenterTests.swift in Sources */,
+				447679892358189D007DEB9B /* CountryListDetailInteractor.swift in Sources */,
 				447679442356C250007DEB9B /* CountryListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

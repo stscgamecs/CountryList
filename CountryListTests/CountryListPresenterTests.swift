@@ -10,12 +10,10 @@ import XCTest
 @testable import CountryList
 class CountryListPresenterTests: XCTestCase {
   var presenter: CountryListPresenter!
-  var store: CountryListStore!
-  
+ 
   override func setUp() {
     super.setUp()
     presenter = CountryListPresenter()
-    store = CountryListStore()
   }
   
   override func tearDown() {

@@ -25,7 +25,7 @@ class CountryListInteractorTests: XCTestCase {
     super.tearDown()
   }
   
-  class CountryListPresenterSpy:CountryListPresenterInterface{
+  class CountryListPresenterSpy:CountryListPresenterInterface {
     var presentCountry = false
     var presentSearchCountry = false
     
@@ -68,11 +68,32 @@ class CountryListInteractorTests: XCTestCase {
     XCTAssert(presenterSpy.presentCountry,"Test GetCountry() should ask PresenterCountry()")
   }
   
+  func testGetCountryAskPresenterToPresentCountryWhenFails() {
+    
+    //Given
+    let storeSpy = CountryListWorkerSpy()
+    storeSpy.checkStateFailure = true
+    
+    let workerSpy = CountryListWorker(store:storeSpy)
+    interactor.worker = workerSpy
+    
+    let presenterSpy = CountryListPresenterSpy()
+    interactor.presenter = presenterSpy
+    
+    
+    //when
+    let requestSpy = CountryList.CountryModel.Request()
+    interactor.getCountry(request: requestSpy)
+    
+    //then
+    XCTAssertFalse(presenterSpy.presentCountry,"Test GetCountry() should ask PresenterCountry()")
+  }
+  
   func testGetSearchAskPresenterToPresentSearchCountry() {
     //Given
     let presenterSpy = CountryListPresenterSpy()
     interactor.presenter = presenterSpy
-    let modelSpy: Country = .init(data: [])
+    let modelSpy: Country = .init(data: [.init(countryCode: "Th", countryName: "Thai")])
     interactor.modelCountry = modelSpy
     let searchCountrySpy = "Th"
     

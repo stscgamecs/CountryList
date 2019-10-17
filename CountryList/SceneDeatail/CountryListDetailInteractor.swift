@@ -21,14 +21,12 @@ class CountryListDetailInteractor: CountryListDetailInteractorInterface {
   
   // MARK: - Business logic
   func getCity(request: CountryListDetail.getCity.Request) {
-    let codeName = model
+    let codeName = model!
     
-    worker?.doSomeWork(sent: codeName!.countryCode) { [weak self] in
+    worker?.doSomeWork(sent: codeName.countryCode) { [weak self] in
       if case let Result.success(data) = $0 {
         let datamodel = data
-        
         self!.model?.countryCode = datamodel.data[0].countryCode
-        
         let response = CountryListDetail.getCity.Response(city: datamodel)
         self?.presenter.presentCity(response: response)
       }

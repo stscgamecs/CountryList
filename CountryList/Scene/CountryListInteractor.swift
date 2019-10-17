@@ -23,9 +23,12 @@ class CountryListInteractor: CountryListInteractorInterface {
     worker?.doSomeWork { [weak self] in
       if case let Result.success(data) = $0 {
         self?.modelCountry = data
+        let response = CountryList.CountryModel.Response(country: self!.modelCountry!)
+        self?.presenter.presentCountry(response: response)
+      }else{
+        print(ApiError.jsonError)
       }
-      let response = CountryList.CountryModel.Response(country: self!.modelCountry!)
-      self?.presenter.presentCountry(response: response)
+      
     }
   }
   
