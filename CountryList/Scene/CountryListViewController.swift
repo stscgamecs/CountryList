@@ -56,6 +56,7 @@ class CountryListViewController: UIViewController, CountryListViewControllerInte
   
   // MARK: - Display logic
   func displayCountry(viewModel: CountryList.CountryModel.ViewModel) {
+    sleep(2)
     loadingView.isHidden = true
     let newcountry = viewModel.country.data
     country = newcountry

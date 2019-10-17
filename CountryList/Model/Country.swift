@@ -13,7 +13,7 @@ struct Country: Codable {
     let data: [DataCountry]
 }
 
-// MARK: - Datum
+// MARK: - DataCountry
 struct DataCountry: Codable {
   var countryCode, countryName: String
     enum CodingKeys: String, CodingKey {

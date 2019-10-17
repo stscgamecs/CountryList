@@ -13,7 +13,7 @@ struct City: Codable {
   var data: [DataCity]
 }
 
-// MARK: - Datum
+// MARK: - DataCity
 struct DataCity: Codable {
     let countryCode, countryName, capitalName: String
 

@@ -27,7 +27,6 @@ class CountryListInteractor: CountryListInteractorInterface {
       }else{
         print(ApiError.jsonError)
       }
-      
     }
   }
   

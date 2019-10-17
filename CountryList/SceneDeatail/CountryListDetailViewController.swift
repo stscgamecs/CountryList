@@ -58,7 +58,7 @@ class CountryListDetailViewController: UIViewController, CountryListDetailViewCo
 
   // MARK: - Display logic
   func displayCity(viewModel: CountryListDetail.getCity.ViewModel) {
-      sleep(3)
+      sleep(2)
     loadingViewDetail.isHidden = true
     countryLabel.text = viewModel.city.data[0].countryName
     cityLabel.text = viewModel.city.data[0].capitalName
