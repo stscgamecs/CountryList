@@ -40,12 +40,22 @@ class CountryListDetailPresenterTests: XCTestCase {
     presenterDetail.viewController = viewModelSpy
     
     
-    //when
+    //When
     let responseSpy = CountryListDetail.GetCity.Response(city: .init(data: [DataCity.init(countryCode: "Th", countryName: "Thai", capitalName: "Bankkok")]))
     presenterDetail.presentCity(response: responseSpy)
     
-    //then
+    //Then
     XCTAssert(viewModelSpy.displayCity,"Test PresentCity() should ask ViewController DisplayCity()")
+    XCTAssert(viewModelSpy.displayLodingCityCheck,"Test PresentCity() should ask ViewController LodingCity()")
+  }
+  
+  func testPresentLoadingAskViewControllerToViewControllerDisplayLodingCity(){
+    //Given
+       let viewModelSpy = CountryListDetailViewControllerSpy()
+       presenterDetail.viewController = viewModelSpy
+    //when
+    presenterDetail.presentLoadingCity()
+    //Then
     XCTAssert(viewModelSpy.displayLodingCityCheck,"Test PresentCity() should ask ViewController LodingCity()")
   }
 }

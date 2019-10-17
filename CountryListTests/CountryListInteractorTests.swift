@@ -126,4 +126,18 @@ class CountryListInteractorTests: XCTestCase {
     //then
     XCTAssert(presenterSpy.presentSearchCountry,"Test GetSearch should ask PresenterSearchCountry()")
   }
+  func testGetSearchAskPresenterToPresentSearchCountryisNull() {
+    //Given
+    let presenterSpy = CountryListPresenterSpy()
+    interactor.presenter = presenterSpy
+    let modelSpy: Country = .init(data: [])
+    interactor.modelCountry = modelSpy
+    
+    //when
+    let requestSpy = CountryList.SearchCountry.Request(searchCountry: nil)
+    interactor.getSearch(request: requestSpy)
+    
+    //then
+    XCTAssertFalse(presenterSpy.presentSearchCountry,"Test GetSearch Not should ask PresenterSearchCountry()")
+  }
 }

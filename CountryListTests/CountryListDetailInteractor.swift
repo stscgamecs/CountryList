@@ -67,5 +67,4 @@ class CountryListDetailInteractorTest: XCTestCase {
     XCTAssert(presenterDetailSpy.presentCity,"Test GetCity() should ask PresentCity()")
     XCTAssert(presenterDetailSpy.presentLoadingCityCheck,"Test GetCity() should ask PresentLoadingCity()")
   }
-  
 }
