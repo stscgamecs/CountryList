@@ -16,13 +16,11 @@ class CountryListDetailRouter: CountryListDetailRouterInput {
   weak var viewController: CountryListDetailViewController!
 
   // MARK: - Navigation
-
   func navigateToSomewhere() {
     
   }
 
   // MARK: - Communication
-
   func passDataToNextScene(segue: UIStoryboardSegue) {
     // NOTE: Teach the router which scenes it can communicate with
 

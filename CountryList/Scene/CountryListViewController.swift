@@ -17,8 +17,8 @@ class CountryListViewController: UIViewController, CountryListViewControllerInte
   var router: CountryListRouter!
   var country: [DataCountry] = []
   
+  @IBOutlet weak var loadingView: UIActivityIndicatorView!
   @IBOutlet weak var countryTableView: UITableView!
-  
   // MARK: - Object lifecycle
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -49,12 +49,14 @@ class CountryListViewController: UIViewController, CountryListViewControllerInte
   
   // MARK: - Event handling
   func getCountry() {
+    loadingView.isHidden = false
     let request = CountryList.CountryModel.Request()
     interactor.getCountry(request: request)
   }
   
   // MARK: - Display logic
   func displayCountry(viewModel: CountryList.CountryModel.ViewModel) {
+    loadingView.isHidden = true
     let newcountry = viewModel.country.data
     country = newcountry
     countryTableView.reloadData()

@@ -53,13 +53,18 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="lEn-Ov-ehr"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ciC-DW-HcS">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6CX-fW-CHo" firstAttribute="top" secondItem="gGj-mJ-dX7" secondAttribute="bottom" constant="16" id="4I1-6f-pAk"/>
+                            <constraint firstItem="ciC-DW-HcS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="A4g-m2-DTf"/>
                             <constraint firstItem="6CX-fW-CHo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="GYE-c8-8nf"/>
                             <constraint firstItem="6CX-fW-CHo" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="agX-Vg-7q6"/>
                             <constraint firstItem="gGj-mJ-dX7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="b6z-2r-4UF"/>
+                            <constraint firstItem="ciC-DW-HcS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cFu-rh-8hF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gGj-mJ-dX7" secondAttribute="trailing" constant="16" id="mAr-5T-aFB"/>
                             <constraint firstItem="6CX-fW-CHo" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yPj-QR-MfS"/>
                             <constraint firstItem="gGj-mJ-dX7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="zk6-9x-AgS"/>
@@ -69,6 +74,7 @@
                     <navigationItem key="navigationItem" title="Main" id="EQr-as-rsN"/>
                     <connections>
                         <outlet property="countryTableView" destination="6CX-fW-CHo" id="RTt-pK-mQD"/>
+                        <outlet property="loadingView" destination="ciC-DW-HcS" id="bzb-CU-uLX"/>
                         <outlet property="textField" destination="gGj-mJ-dX7" id="vRR-rE-Nh3"/>
                         <segue destination="XOT-dV-y4q" kind="show" identifier="showDetail" id="cf2-3y-Bks"/>
                     </connections>
@@ -100,13 +106,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Qin-Ov-0Xv">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Qin-Ov-0Xv" firstAttribute="centerX" secondItem="MwT-Aq-tlJ" secondAttribute="centerX" id="0uh-Vp-fOU"/>
                             <constraint firstItem="aCw-1Y-CZe" firstAttribute="leading" secondItem="MwT-Aq-tlJ" secondAttribute="leading" id="Gvw-LZ-Jmg"/>
                             <constraint firstItem="O5H-zj-dmh" firstAttribute="top" secondItem="aCw-1Y-CZe" secondAttribute="bottom" constant="8" symbolic="YES" id="PnP-BW-aN0"/>
                             <constraint firstItem="aCw-1Y-CZe" firstAttribute="top" secondItem="pws-L9-HG4" secondAttribute="top" id="Twu-zh-AtR"/>
                             <constraint firstItem="aCw-1Y-CZe" firstAttribute="trailing" secondItem="O5H-zj-dmh" secondAttribute="trailing" id="VLB-4S-0xa"/>
+                            <constraint firstItem="Qin-Ov-0Xv" firstAttribute="centerY" secondItem="MwT-Aq-tlJ" secondAttribute="centerY" id="Xau-Z6-cic"/>
                             <constraint firstItem="pws-L9-HG4" firstAttribute="bottom" secondItem="O5H-zj-dmh" secondAttribute="bottom" constant="670" id="Z41-3z-GJ5"/>
                             <constraint firstAttribute="trailing" secondItem="aCw-1Y-CZe" secondAttribute="trailing" id="mh9-7h-g56"/>
                             <constraint firstItem="aCw-1Y-CZe" firstAttribute="leading" secondItem="O5H-zj-dmh" secondAttribute="leading" id="zVd-kK-74V"/>
@@ -117,6 +128,7 @@
                     <connections>
                         <outlet property="cityLabel" destination="O5H-zj-dmh" id="N7x-ve-hWg"/>
                         <outlet property="countryLabel" destination="aCw-1Y-CZe" id="myW-Zq-1IF"/>
+                        <outlet property="loadingViewDetail" destination="Qin-Ov-0Xv" id="JbW-Qx-Pcj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FIh-21-DJi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -19,6 +19,7 @@ class CountryListDetailViewController: UIViewController, CountryListDetailViewCo
   
   @IBOutlet weak var countryLabel: UILabel!
   @IBOutlet weak var cityLabel: UILabel!
+  @IBOutlet weak var loadingViewDetail: UIActivityIndicatorView!
   
   // MARK: - Object lifecycle
   override func awakeFromNib() {
@@ -50,13 +51,15 @@ class CountryListDetailViewController: UIViewController, CountryListDetailViewCo
 
   // MARK: - Event handling
   func getCity() {
-    // NOTE: Ask the Interactor to do some work
+    loadingViewDetail.isHidden = false
     let request = CountryListDetail.getCity.Request( )
     interactor.getCity(request: request)
   }
 
   // MARK: - Display logic
   func displayCity(viewModel: CountryListDetail.getCity.ViewModel) {
+      sleep(3)
+    loadingViewDetail.isHidden = true
     countryLabel.text = viewModel.city.data[0].countryName
     cityLabel.text = viewModel.city.data[0].capitalName
   }

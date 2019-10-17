@@ -14,7 +14,6 @@ protocol CountryListDetailInteractorInterface {
 }
 
 class CountryListDetailInteractor: CountryListDetailInteractorInterface {
-  
   var presenter: CountryListDetailPresenterInterface!
   var worker: CountryListDetailWorker?
   var model: DataCountry?

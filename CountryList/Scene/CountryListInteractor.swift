@@ -17,7 +17,6 @@ class CountryListInteractor: CountryListInteractorInterface {
   var presenter: CountryListPresenterInterface!
   var worker: CountryListWorker?
   var modelCountry: Country?
-  
   // MARK: - Business logic
   func getCountry(request: CountryList.CountryModel.Request) {
     worker?.doSomeWork { [weak self] in
