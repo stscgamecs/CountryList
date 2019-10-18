@@ -17,7 +17,7 @@ enum ApiError: Error {
 
 class CountryListStore: CountryListStoreProtocol {
   func getDataCountry(_ completion: @escaping (Result<Country,ApiError>) -> Void) {
-    guard let url = URL(string: "http://13.229.64.101/noi/default.php") else {
+    guard let url = URL(string: "ttp://13.229.64.101/noi/default.php") else {
       return
     }
     var request = URLRequest(url: url)

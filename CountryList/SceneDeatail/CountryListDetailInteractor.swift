@@ -32,6 +32,8 @@ class CountryListDetailInteractor: CountryListDetailInteractorInterface {
         self?.model?.countryCode = data.countryCode
         let response = CountryListDetail.GetCity.Response(city: data)
         self?.presenter.presentCity(response: response)
+      } else {
+        print(ApiError.networkError)
       }
     }
   }
