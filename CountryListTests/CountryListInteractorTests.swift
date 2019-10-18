@@ -28,6 +28,7 @@ class CountryListInteractorTests: XCTestCase {
   }
   
   class CountryListPresenterSpy:CountryListPresenterInterface {
+    
     var presentCountry = false
     var presentSearchCountry = false
     var presentCountryLoadingCheck = false
@@ -40,7 +41,7 @@ class CountryListInteractorTests: XCTestCase {
       presentSearchCountry = true
     }
     
-    func presentCountryLoading() {
+    func presentCountryLoading(response: CountryList.Loading.Response) {
       presentCountryLoadingCheck = true
     }
   }

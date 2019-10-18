@@ -22,11 +22,12 @@ class CountryListPresenterTests: XCTestCase {
   }
   
   class CountryListViewControllerSpy: CountryListViewControllerInterface {
+    
     var displayCountry = false
     var displaySearchCountry = false
     var displayLoading = false
     
-    func displayLoading(hidden: Bool) {
+    func displayLoading(viewModel: CountryList.Loading.ViewModel) {
       displayLoading = true
     }
     
@@ -71,7 +72,7 @@ class CountryListPresenterTests: XCTestCase {
     presenter.viewController = viewModelSpy
     
     //when
-    presenter.presentCountryLoading()
+    presenter.presentCountryLoading(response: CountryList.Loading.Response(isShowing: true))
     
     //then
     XCTAssert(viewModelSpy.displayLoading,"Test PresentCountryLoading ask ViewController displayLoading())")

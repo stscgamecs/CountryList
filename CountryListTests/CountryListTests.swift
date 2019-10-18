@@ -22,6 +22,7 @@ class CountryListDetailPresenterTests: XCTestCase {
   }
   
   class CountryListDetailViewControllerSpy: CountryListDetailViewControllerInterface {
+    
     var displayCity = false
     var displayLodingCityCheck = false
     
@@ -29,7 +30,7 @@ class CountryListDetailPresenterTests: XCTestCase {
       displayCity = true
     }
     
-    func displayLodingCity(hidden: Bool) {
+    func displayLodingCity(viewModel: CountryListDetail.Loding.ViewModel) {
       displayLodingCityCheck = true
     }
   }
@@ -41,7 +42,7 @@ class CountryListDetailPresenterTests: XCTestCase {
     
     
     //When
-    let responseSpy = CountryListDetail.GetCity.Response(city: .init(data: [DataCity.init(countryCode: "Th", countryName: "Thai", capitalName: "Bankkok")]))
+    let responseSpy = CountryListDetail.GetCity.Response(city: DataCity.init(countryCode: "Th", countryName: "Thai", capitalName: "Bankkok"))
     presenterDetail.presentCity(response: responseSpy)
     
     //Then
@@ -55,7 +56,7 @@ class CountryListDetailPresenterTests: XCTestCase {
        presenterDetail.viewController = viewModelSpy
     
     //when
-    presenterDetail.presentLoadingCity()
+    presenterDetail.presentLoadingCity(response: CountryListDetail.Loding.Response(isShowing: true))
     
     //Then
     XCTAssert(viewModelSpy.displayLodingCityCheck,"Test PresentCity() should ask ViewController LodingCity()")

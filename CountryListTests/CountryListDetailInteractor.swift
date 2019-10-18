@@ -35,7 +35,7 @@ class CountryListDetailInteractorTest: XCTestCase {
       presentCity = true
     }
     
-    func presentLoadingCity() {
+    func presentLoadingCity(response: CountryListDetail.Loding.Response) {
       presentLoadingCityCheck = true
     }
   }
@@ -43,9 +43,9 @@ class CountryListDetailInteractorTest: XCTestCase {
   class CountryListDetailWorkerSpy: CountryListDetailStoreProtocol {
     var checkStateFailure:Bool = false
     
-    func getDataCity(sent city_name: String, _ completion: @escaping (Result<City, ApiError>) -> Void) {
+    func getDataCity(sent city_name: String, _ completion: @escaping (Result<DataCity, ApiError>) -> Void) {
       if checkStateFailure == false {
-        completion(Result.success(.init(data: [.init(countryCode: "", countryName: "", capitalName: "")])))
+        completion(Result.success(.init(countryCode: "", countryName: "", capitalName: "")))
       }
     }
   }
