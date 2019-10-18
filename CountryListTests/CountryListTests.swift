@@ -22,19 +22,19 @@ class CountryListDetailPresenterTests: XCTestCase {
   }
   
   class CountryListDetailViewControllerSpy: CountryListDetailViewControllerInterface {
-    
     var displayCity = false
     var displayLodingCityCheck = false
+    
     func displayCity(viewModel: CountryListDetail.GetCity.ViewModel) {
       displayCity = true
     }
+    
     func displayLodingCity(hidden: Bool) {
       displayLodingCityCheck = true
     }
   }
   
   func testPresentCityAskViewControllerToViewControllerDisplayCity() {
-    
     //Given
     let viewModelSpy = CountryListDetailViewControllerSpy()
     presenterDetail.viewController = viewModelSpy
@@ -53,8 +53,10 @@ class CountryListDetailPresenterTests: XCTestCase {
     //Given
        let viewModelSpy = CountryListDetailViewControllerSpy()
        presenterDetail.viewController = viewModelSpy
+    
     //when
     presenterDetail.presentLoadingCity()
+    
     //Then
     XCTAssert(viewModelSpy.displayLodingCityCheck,"Test PresentCity() should ask ViewController LodingCity()")
   }

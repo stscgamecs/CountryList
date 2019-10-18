@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import CountryList
+
 class CountryListPresenterTests: XCTestCase {
   var presenter: CountryListPresenter!
  
@@ -21,13 +22,14 @@ class CountryListPresenterTests: XCTestCase {
   }
   
   class CountryListViewControllerSpy: CountryListViewControllerInterface {
-    
     var displayCountry = false
     var displaySearchCountry = false
     var displayLoading = false
+    
     func displayLoading(hidden: Bool) {
-         displayLoading = true
+      displayLoading = true
     }
+    
     func displayCountry(viewModel: CountryList.CountryModel.ViewModel) {
       displayCountry = true
     }
@@ -38,11 +40,9 @@ class CountryListPresenterTests: XCTestCase {
   }
   
   func testPresentCountryAskViewControllerToViewControllerDisplayCountry() {
-    
     //Given
     let viewModelSpy = CountryListViewControllerSpy()
     presenter.viewController = viewModelSpy
-    
     
     //when
     let responseSpy = CountryList.CountryModel.Response(country: .init(data: []))
@@ -50,15 +50,12 @@ class CountryListPresenterTests: XCTestCase {
     
     //then
     XCTAssert(viewModelSpy.displayCountry,"Test PresentCountry() should ask ViewController DisplayCountry()")
-    XCTAssert(viewModelSpy.displayLoading)
   }
   
   func testPresentSearchCountryAskViewControllerToViewControllerDisplaySearchCountry() {
-    
     //Given
     let viewModelSpy = CountryListViewControllerSpy()
     presenter.viewController = viewModelSpy
-    
     
     //when
     let responseSpy = CountryList.SearchCountry.Response(country: [])
@@ -66,8 +63,17 @@ class CountryListPresenterTests: XCTestCase {
     
     //then
     XCTAssert(viewModelSpy.displaySearchCountry,"Test PresentCountry() should ask ViewController DisplayCountry()")
-    XCTAssert(viewModelSpy.displayLoading)
   }
   
-  
+  func testPresentCountryLoadingAskViewControllerToViewControllerDisplayLoading(){
+    //Given
+    let viewModelSpy = CountryListViewControllerSpy()
+    presenter.viewController = viewModelSpy
+    
+    //when
+    presenter.presentCountryLoading()
+    
+    //then
+    XCTAssert(viewModelSpy.displayLoading,"Test PresentCountryLoading ask ViewController displayLoading())")
+  }
 }

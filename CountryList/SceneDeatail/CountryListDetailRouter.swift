@@ -9,16 +9,12 @@
 import UIKit
 
 protocol CountryListDetailRouterInput {
-  func navigateToSomewhere()
 }
 
 class CountryListDetailRouter: CountryListDetailRouterInput {
   weak var viewController: CountryListDetailViewController!
 
   // MARK: - Navigation
-  func navigateToSomewhere() {
-    
-  }
 
   // MARK: - Communication
   func passDataToNextScene(segue: UIStoryboardSegue) {

@@ -14,6 +14,7 @@ enum ApiError: Error {
   case jsonError
   case networkError
 }
+
 class CountryListStore: CountryListStoreProtocol {
   func getDataCountry(_ completion: @escaping (Result<Country,ApiError>) -> Void) {
     guard let url = URL(string: "http://13.229.64.101/noi/default.php") else {
@@ -24,8 +25,7 @@ class CountryListStore: CountryListStoreProtocol {
     
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
       if let _ = error {
-        print(ApiError.jsonError)
-        print("error")
+        completion(.failure(ApiError.jsonError))
       }
       else if let data = data, let response = response as? HTTPURLResponse {
         DispatchQueue.main.async {

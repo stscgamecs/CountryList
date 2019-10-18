@@ -10,7 +10,7 @@ import UIKit
 
 protocol CountryListDetailViewControllerInterface: class {
   func displayCity(viewModel: CountryListDetail.GetCity.ViewModel)
-  func displayLodingCity(hidden:Bool)
+  func displayLodingCity(viewModel: CountryListDetail.Loding.ViewModel)
 }
 
 class CountryListDetailViewController: UIViewController, CountryListDetailViewControllerInterface {
@@ -28,42 +28,44 @@ class CountryListDetailViewController: UIViewController, CountryListDetailViewCo
     super.awakeFromNib()
     configure(viewController: self)
   }
-
+  
   // MARK: - Configuration
   private func configure(viewController: CountryListDetailViewController) {
     let router = CountryListDetailRouter()
     router.viewController = viewController
-
+    
     let presenter = CountryListDetailPresenter()
     presenter.viewController = viewController
-
+    
     let interactor = CountryListDetailInteractor()
     interactor.presenter = presenter
     interactor.worker = CountryListDetailWorker(store: CountryListDetailStore())
-
+    
     viewController.interactor = interactor
     viewController.router = router
   }
-
+  
   // MARK: - View lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     getCity()
   }
-  func displayLodingCity(hidden:Bool) {
-    loadingViewDetail.isHidden = hidden
+  
+  func displayLodingCity(viewModel: CountryListDetail.Loding.ViewModel) {
+    loadingViewDetail.isHidden = viewModel.isShowing
   }
+  
   // MARK: - Event handling
   func getCity() {
     interactor.getCity(request: CountryListDetail.GetCity.Request())
   }
-
+  
   // MARK: - Display logic
   func displayCity(viewModel: CountryListDetail.GetCity.ViewModel) {
     countryLabel.text = viewModel.countryName
     cityLabel.text = viewModel.cityName
   }
-
+  
   // MARK: - Router
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     router.passDataToNextScene(segue: segue)

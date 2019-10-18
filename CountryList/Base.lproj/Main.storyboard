@@ -26,33 +26,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6CX-fW-CHo">
                                 <rect key="frame" x="0.0" y="154" width="414" height="708"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="countryCell" rowHeight="100" id="7ey-gs-CN4" customClass="CountryTableViewCell" customModule="CountryList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="100"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7ey-gs-CN4" id="xY5-VM-lAx">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UFM-nv-5jk">
-                                                    <rect key="frame" x="20" y="10" width="389" height="85"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="UFM-nv-5jk" secondAttribute="bottom" constant="5" id="9IG-Wu-6rA"/>
-                                                <constraint firstItem="UFM-nv-5jk" firstAttribute="top" secondItem="xY5-VM-lAx" secondAttribute="top" constant="10" id="Cwp-Dd-oFb"/>
-                                                <constraint firstAttribute="trailing" secondItem="UFM-nv-5jk" secondAttribute="trailing" constant="5" id="pdh-qx-iLi"/>
-                                                <constraint firstItem="UFM-nv-5jk" firstAttribute="leading" secondItem="xY5-VM-lAx" secondAttribute="leading" constant="20" id="z6F-qP-FBz"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="countryName" destination="UFM-nv-5jk" id="0ua-Ra-lf6"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="GUb-tb-VC7"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="lEn-Ov-ehr"/>

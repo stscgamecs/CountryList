@@ -36,4 +36,14 @@ struct CountryList {
       let country: [DataCountry]
     }
   }
+  
+  struct Loading {
+    struct Response {
+      let isShowing: Bool
+    }
+    
+    struct ViewModel {
+      let isShowing: Bool
+    }
+  }
 }

@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import CountryList
+
 class CountryListDetailInteractorTest: XCTestCase {
   var interactorDetail: CountryListDetailInteractor!
   var storeDetail: CountryListDetailStore!
@@ -29,18 +30,21 @@ class CountryListDetailInteractorTest: XCTestCase {
   class CountryListDetailPresenterSpy: CountryListDetailPresenterInterface {
     var presentCity = false
     var presentLoadingCityCheck = false
+    
     func presentCity(response: CountryListDetail.GetCity.Response) {
       presentCity = true
     }
+    
     func presentLoadingCity() {
-         presentLoadingCityCheck = true
+      presentLoadingCityCheck = true
     }
   }
   
   class CountryListDetailWorkerSpy: CountryListDetailStoreProtocol {
     var checkStateFailure:Bool = false
+    
     func getDataCity(sent city_name: String, _ completion: @escaping (Result<City, ApiError>) -> Void) {
-      if checkStateFailure == false{
+      if checkStateFailure == false {
         completion(Result.success(.init(data: [.init(countryCode: "", countryName: "", capitalName: "")])))
       }
     }
@@ -52,10 +56,10 @@ class CountryListDetailInteractorTest: XCTestCase {
     let workerSpy = CountryListDetailWorker(store: store)
     interactorDetail.worker = workerSpy
     
-    let modelSpy: DataCountry
-    modelSpy = .init(countryCode: "Th", countryName: "Thiland")
+    let modelSpy: DataCountry = .init(countryCode: "Th", countryName: "Thiland")
     interactorDetail.model = modelSpy
     interactorDetail.model?.countryCode = "Th"
+    
     let presenterDetailSpy = CountryListDetailPresenterSpy()
     interactorDetail.presenter = presenterDetailSpy
     

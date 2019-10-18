@@ -14,15 +14,15 @@ struct CountryListDetail {
     struct Request {}
     
     struct Response {
-      let city: City
+      let city: DataCity
     }
     
     struct ViewModel {
       let countryName: String
       let cityName:String
-      
     }
   }
+  
   struct GetCountry {
     
     struct Request {}
@@ -32,4 +32,14 @@ struct CountryListDetail {
     struct ViewModel {}
   }
   
+  struct Loding {
+    
+    struct Response {
+      let isShowing: Bool
+    }
+    
+    struct ViewModel {
+      let isShowing: Bool
+    }
+  }
 }

@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import CountryList
+
 class CountryListInteractorTests: XCTestCase {
   var interactor: CountryListInteractor!
   var store: CountryListStore!
@@ -16,6 +17,7 @@ class CountryListInteractorTests: XCTestCase {
     interactor = CountryListInteractor()
     store = CountryListStore()
   }
+  
   override func setUp() {
     super.setUp()
     setUpCountry()
@@ -26,10 +28,10 @@ class CountryListInteractorTests: XCTestCase {
   }
   
   class CountryListPresenterSpy:CountryListPresenterInterface {
-    
     var presentCountry = false
     var presentSearchCountry = false
     var presentCountryLoadingCheck = false
+    
     func presentCountry(response: CountryList.CountryModel.Response) {
       presentCountry = true
     }
@@ -56,7 +58,6 @@ class CountryListInteractorTests: XCTestCase {
   }
   
   func testGetCountryAskPresenterToPresentCountry() {
-    
     //Given
     let workerSpy = CountryListWorker(store: CountryListWorkerSpy())
     interactor.worker = workerSpy
@@ -75,7 +76,6 @@ class CountryListInteractorTests: XCTestCase {
   }
   
   func testGetCountryAskPresenterToPresentCountryWhenFails() {
-    
     //Given
     let storeSpy = CountryListWorkerSpy()
     storeSpy.checkStateFailure = true
@@ -111,6 +111,7 @@ class CountryListInteractorTests: XCTestCase {
     //then
     XCTAssert(presenterSpy.presentSearchCountry,"Test GetSearch should ask PresenterSearchCountry()")
   }
+  
   func testGetSearchAskPresenterToPresentSearchCountryisEmpty() {
     //Given
     let presenterSpy = CountryListPresenterSpy()
@@ -126,6 +127,7 @@ class CountryListInteractorTests: XCTestCase {
     //then
     XCTAssert(presenterSpy.presentSearchCountry,"Test GetSearch should ask PresenterSearchCountry()")
   }
+  
   func testGetSearchAskPresenterToPresentSearchCountryisNull() {
     //Given
     let presenterSpy = CountryListPresenterSpy()

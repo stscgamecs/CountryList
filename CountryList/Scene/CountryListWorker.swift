@@ -20,7 +20,7 @@ class CountryListWorker {
   }
   
   // MARK: - Business Logic
-  func doSomeWork(_ completion: @escaping (Result<Country,ApiError>) -> Void) {
+  func getStore(_ completion: @escaping (Result<Country,ApiError>) -> Void) {
     // NOTE: Do the work
     store.getDataCountry {
       completion($0)

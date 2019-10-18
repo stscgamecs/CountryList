@@ -20,15 +20,16 @@ class CountryListDetailInteractor: CountryListDetailInteractorInterface {
   
   // MARK: - Business logic
   func getCity(request: CountryListDetail.GetCity.Request) {
-    presenter.presentLoadingCity()
     guard let codeName = model else{
       return
     }
     
-    worker?.doSomeWork(sent: codeName.countryCode) { [weak self] in
+    let response = CountryListDetail.Loding.Response(isShowing: false)
+    presenter.presentLoadingCity(response: response)
+    
+    worker?.getStore(sent: codeName.countryCode) { [weak self] in
       if case let Result.success(data) = $0 {
-        self?.model?.countryCode = data.data[0].countryCode
-        
+        self?.model?.countryCode = data.countryCode
         let response = CountryListDetail.GetCity.Response(city: data)
         self?.presenter.presentCity(response: response)
       }

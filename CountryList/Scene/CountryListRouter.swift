@@ -14,19 +14,21 @@ protocol CountryListRouterInput {
 
 class CountryListRouter: CountryListRouterInput {
   weak var viewController: CountryListViewController!
-
+  
   // MARK: - Navigation
   func navigateToDetail(sender: DataCountry) {
     viewController.performSegue(withIdentifier: "showDetail", sender: sender)
   }
-
+  
   // MARK: - Communication
   func passDataToNextScene(segue: UIStoryboardSegue,sender: Any?) {
     if segue.identifier == "showDetail" {
-      passDataToSomewhereScene(segue: segue,sender: sender as! DataCountry)
+      if let sender = sender as? DataCountry{
+        passDataToSomewhereScene(segue: segue,sender: sender)
+      }
     }
   }
-
+  
   func passDataToSomewhereScene(segue: UIStoryboardSegue,sender: DataCountry) {
     let countryListViewController = segue.destination as? CountryListDetailViewController
     countryListViewController?.interactor.model = sender

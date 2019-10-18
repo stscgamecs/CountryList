@@ -15,11 +15,11 @@ struct City: Codable {
 
 // MARK: - DataCity
 struct DataCity: Codable {
-    let countryCode, countryName, capitalName: String
-
-    enum CodingKeys: String, CodingKey {
-        case countryCode = "country_code"
-        case countryName = "country_name"
-        case capitalName = "capital_name"
-    }
+  let countryCode, countryName, capitalName: String
+  
+  enum CodingKeys: String, CodingKey {
+    case countryCode = "country_code"
+    case countryName = "country_name"
+    case capitalName = "capital_name"
+  }
 }

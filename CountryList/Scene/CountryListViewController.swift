@@ -10,7 +10,7 @@ import UIKit
 protocol CountryListViewControllerInterface: class {
   func displayCountry(viewModel: CountryList.CountryModel.ViewModel)
   func displaySearchCountry(viewModel:CountryList.SearchCountry.ViewModel)
-  func displayLoading(hidden: Bool)
+  func displayLoading(viewModel: CountryList.Loading.ViewModel)
 }
 
 class CountryListViewController: UIViewController, CountryListViewControllerInterface {
@@ -23,6 +23,7 @@ class CountryListViewController: UIViewController, CountryListViewControllerInte
   @IBOutlet weak var loadingView: UIActivityIndicatorView!
   @IBOutlet weak var countryTableView: UITableView!
   @IBOutlet weak var textField: UITextField!
+  
   // MARK: - Object lifecycle
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -48,17 +49,25 @@ class CountryListViewController: UIViewController, CountryListViewControllerInte
   // MARK: - View lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    setUpCell()
     getCountry()
   }
-  func displayLoading(hidden: Bool) {
-    loadingView.isHidden = hidden
+  
+  func displayLoading(viewModel: CountryList.Loading.ViewModel) {
+    loadingView.isHidden = viewModel.isShowing
   }
+  
+  func setUpCell() {
+    let bundle = Bundle(for: CountryTableViewCell.self)
+    let nib = UINib(nibName: "CountryTableViewCell", bundle: bundle)
+    countryTableView.register(nib, forCellReuseIdentifier: "countryCell")
+  }
+  
   // MARK: - Event handling
   func getCountry() {
     let request = CountryList.CountryModel.Request()
     interactor.getCountry(request: request)
   }
-  
   // MARK: - Display logic
   func displayCountry(viewModel: CountryList.CountryModel.ViewModel) {
     country = viewModel.country.data
