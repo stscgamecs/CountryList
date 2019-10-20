@@ -11,10 +11,11 @@ protocol CountryListViewControllerInterface: class {
   func displayCountry(viewModel: CountryList.CountryModel.ViewModel)
   func displaySearchCountry(viewModel:CountryList.SearchCountry.ViewModel)
   func displayLoading(viewModel: CountryList.Loading.ViewModel)
+  func displayLoadingError()
 }
 
 class CountryListViewController: UIViewController, CountryListViewControllerInterface {
-  
+
   var interactor: CountryListInteractorInterface!
   var router: CountryListRouter!
   
@@ -80,6 +81,10 @@ class CountryListViewController: UIViewController, CountryListViewControllerInte
     countryTableView.reloadData()
   }
   
+  func displayLoadingError() {
+   let alert = UIAlertController(title: "Error", message: "error.localizedDescription", preferredStyle: .alert)
+  self.present(alert, animated: false)
+  }
   @IBAction func textFieldsearch(_ sender: UITextField) {
     let requset = CountryList.SearchCountry.Request(searchCountry: sender.text)
     interactor.getSearch(request: requset)

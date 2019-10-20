@@ -21,13 +21,18 @@ class CountryListInteractor: CountryListInteractorInterface {
   // MARK: - Business logic
   func getCountry(request: CountryList.CountryModel.Request) {
     presenter.presentCountryLoading(response: CountryList.Loading.Response(isShowing: false))
+    
     worker?.getStore { [weak self] in
       if case let Result.success(data) = $0 {
         self?.modelCountry = data
         let response = CountryList.CountryModel.Response(country: self?.modelCountry)
         self?.presenter.presentCountry(response: response)
       } else {
-        print(ApiError.networkError)
+        print(ApiError.jsonError)
+        DispatchQueue.main.async {
+          let response = CountryList.CountryModel.Response(country: self?.modelCountry)
+          self?.presenter.presentCountry(response: response)
+        }
       }
     }
   }
@@ -47,6 +52,5 @@ class CountryListInteractor: CountryListInteractorInterface {
       let response = CountryList.SearchCountry.Response(country: self.modelCountry?.data)
       presenter.presentSearchCountry(response: response)
     }
-    
   }
 }

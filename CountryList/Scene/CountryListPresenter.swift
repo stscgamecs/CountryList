@@ -14,6 +14,7 @@ protocol CountryListPresenterInterface {
 }
 
 class CountryListPresenter: CountryListPresenterInterface {
+
   weak var viewController: CountryListViewControllerInterface!
   // MARK: - Presentation logic
   func presentCountryLoading(response: CountryList.Loading.Response) {
@@ -23,9 +24,11 @@ class CountryListPresenter: CountryListPresenterInterface {
   
   func presentCountry(response: CountryList.CountryModel.Response) {
     let viewModelisHidden = CountryList.Loading.ViewModel(isShowing: true)
-    viewController.displayLoading(viewModel: viewModelisHidden)
-    
-    guard let country = response.country else { return  }
+       viewController.displayLoading(viewModel: viewModelisHidden)
+  
+    guard let country = response.country else {
+      return viewController.displayLoadingError()
+    }
     let viewModel = CountryList.CountryModel.ViewModel(country: country)
     viewController.displayCountry(viewModel: viewModel)
   }
@@ -33,7 +36,7 @@ class CountryListPresenter: CountryListPresenterInterface {
   func presentSearchCountry(response: CountryList.SearchCountry.Response) {
     let viewModelisHidden = CountryList.Loading.ViewModel(isShowing: true)
     viewController.displayLoading(viewModel: viewModelisHidden)
-    guard let country = response.country else { return  }
+    guard let country = response.country else { return }
     let viewModel = CountryList.SearchCountry.ViewModel(country: country)
     viewController.displaySearchCountry(viewModel: viewModel)
   }

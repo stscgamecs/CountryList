@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Country
 struct Country: Codable {
-  let data: [DataCountry]
+  var data: [DataCountry]
 }
 
 // MARK: - DataCountry
