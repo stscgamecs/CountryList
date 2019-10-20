@@ -11,6 +11,7 @@ import UIKit
 protocol CountryListDetailViewControllerInterface: class {
   func displayCity(viewModel: CountryListDetail.GetCity.ViewModel)
   func displayLodingCity(viewModel: CountryListDetail.Loding.ViewModel)
+  func displayLodingCityError()
 }
 
 class CountryListDetailViewController: UIViewController, CountryListDetailViewControllerInterface {
@@ -65,7 +66,10 @@ class CountryListDetailViewController: UIViewController, CountryListDetailViewCo
     countryLabel.text = viewModel.countryName
     cityLabel.text = viewModel.cityName
   }
-  
+  func displayLodingCityError() {
+     let alert = UIAlertController(title: "Error", message: "error.localizedDescription", preferredStyle: .alert)
+     self.present(alert, animated: false)
+   }
   // MARK: - Router
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     router.passDataToNextScene(segue: segue)

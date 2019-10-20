@@ -25,8 +25,12 @@ class CountryListDetailPresenter: CountryListDetailPresenterInterface {
   func presentCity(response: CountryListDetail.GetCity.Response) {
     let viewModelisHidden = CountryListDetail.Loding.ViewModel(isShowing: true)
     viewController.displayLodingCity(viewModel: viewModelisHidden)
+    
     let responseCapitalName = response.city.capitalName
     let responseCountryName = response.city.countryName
+    if responseCapitalName == "" {
+      viewController.displayLodingCityError()
+    }
     let viewModel = CountryListDetail.GetCity.ViewModel(countryName: responseCountryName, cityName: responseCapitalName)
     viewController.displayCity(viewModel: viewModel)
   }

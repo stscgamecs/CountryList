@@ -34,6 +34,10 @@ class CountryListDetailInteractor: CountryListDetailInteractorInterface {
         self?.presenter.presentCity(response: response)
       } else {
         print(ApiError.jsonError)
+        DispatchQueue.main.async {
+        let response = CountryListDetail.GetCity.Response(city: DataCity(countryCode: "", countryName: "", capitalName: ""))
+        self?.presenter.presentCity(response: response)
+        }
       }
     }
   }
