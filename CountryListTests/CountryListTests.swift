@@ -25,7 +25,7 @@ class CountryListDetailPresenterTests: XCTestCase {
     
     var displayCity = false
     var displayLodingCityCheck = false
-    var displayLodingCityErrorTest = false
+    var displayLodingError = false
     func displayCity(viewModel: CountryListDetail.GetCity.ViewModel) {
       displayCity = true
     }
@@ -33,8 +33,9 @@ class CountryListDetailPresenterTests: XCTestCase {
     func displayLodingCity(viewModel: CountryListDetail.Loding.ViewModel) {
       displayLodingCityCheck = true
     }
-    func displayLodingCityError() {
-      displayLodingCityErrorTest = true
+   
+    func displayLodingCityError(viewModel: CountryListDetail.LoadingError.ViewModel) {
+         displayLodingError = true
     }
   }
   
@@ -70,9 +71,9 @@ class CountryListDetailPresenterTests: XCTestCase {
     presenterDetail.viewController = viewModelSpy
     
     //when
-    presenterDetail.presentCity(response: CountryListDetail.GetCity.Response(city: DataCity(countryCode: "", countryName: "", capitalName: "" )))
+    presenterDetail.presentLoadingCityError(response: CountryListDetail.LoadingError.Response(urlError: ""))
     
     //Then
-    XCTAssert(viewModelSpy.displayLodingCityErrorTest,"Test PresentCityError() should ask ViewController LodingCityError()")
+    XCTAssert(viewModelSpy.displayLodingError,"Test PresentCityError() should ask ViewController LodingCityError()")
   }
 }

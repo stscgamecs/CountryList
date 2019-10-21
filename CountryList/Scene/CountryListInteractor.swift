@@ -26,10 +26,9 @@ class CountryListInteractor: CountryListInteractorInterface {
         self?.modelCountry = data
         let response = CountryList.CountryModel.Response(country: self?.modelCountry)
         self?.presenter.presentCountry(response: response)
-      } else {
-        print(ApiError.jsonError)
-        let response = CountryList.CountryModel.Response(country: self?.modelCountry)
-        self?.presenter.presentCountry(response: response)
+      } else if case let Result.failure(data) = $0 {
+        let response = CountryList.LoadingError.Response(urlError: "\(data)")
+        self?.presenter.presentCountryLoadingError(response: response)
       }
     }
   }

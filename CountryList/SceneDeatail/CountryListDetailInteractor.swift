@@ -32,10 +32,9 @@ class CountryListDetailInteractor: CountryListDetailInteractorInterface {
         self?.model?.countryCode = data.countryCode
         let response = CountryListDetail.GetCity.Response(city: data)
         self?.presenter.presentCity(response: response)
-      } else {
+      } else if case let Result.failure(data) = $0 {
         print(ApiError.jsonError)
-        let response = CountryListDetail.GetCity.Response(city: DataCity(countryCode: "", countryName: "", capitalName: ""))
-        self?.presenter.presentCity(response: response)
+        self?.presenter.presentLoadingCityError(response: CountryListDetail.LoadingError.Response(urlError: "\(data)"))
       }
     }
   }

@@ -11,6 +11,7 @@ import UIKit
 protocol CountryListDetailPresenterInterface {
   func presentLoadingCity(response: CountryListDetail.Loding.Response)
   func presentCity(response: CountryListDetail.GetCity.Response)
+  func presentLoadingCityError(response: CountryListDetail.LoadingError.Response)
 }
 
 class CountryListDetailPresenter: CountryListDetailPresenterInterface {
@@ -28,10 +29,12 @@ class CountryListDetailPresenter: CountryListDetailPresenterInterface {
     
     let responseCapitalName = response.city.capitalName
     let responseCountryName = response.city.countryName
-    if responseCapitalName == "" {
-      viewController.displayLodingCityError()
-    }
     let viewModel = CountryListDetail.GetCity.ViewModel(countryName: responseCountryName, cityName: responseCapitalName)
     viewController.displayCity(viewModel: viewModel)
   }
+  
+  func presentLoadingCityError(response: CountryListDetail.LoadingError.Response) {
+    viewController.displayLodingCityError(viewModel: CountryListDetail.LoadingError.ViewModel(urlError: response.urlError))
+   }
+   
 }

@@ -32,7 +32,7 @@ class CountryListInteractorTests: XCTestCase {
     var presentCountry = false
     var presentSearchCountry = false
     var presentCountryLoadingCheck = false
-    
+    var presentCountryLoadingError = false
     func presentCountry(response: CountryList.CountryModel.Response) {
       presentCountry = true
     }
@@ -44,12 +44,15 @@ class CountryListInteractorTests: XCTestCase {
     func presentCountryLoading(response: CountryList.Loading.Response) {
       presentCountryLoadingCheck = true
     }
+    func presentCountryLoadingError(response: CountryList.LoadingError.Response) {
+        presentCountryLoadingError = true
+      }
   }
   
   class CountryListWorkerSpy: CountryListStoreProtocol {
     var checkStateFailure:Bool = false
     
-    func getDataCountry(_ completion: @escaping (Result<Country, ApiError>) -> Void) {
+    func getDataCountry(_ completion: @escaping (Result<Country, Error>) -> Void) {
       if checkStateFailure == false{
         completion(Result.success(.init(data: [])))
       }else{
@@ -93,7 +96,7 @@ class CountryListInteractorTests: XCTestCase {
     interactor.getCountry(request: requestSpy)
     
     //then
-    XCTAssert(presenterSpy.presentCountry,"Test GetCountry() should ask PresenterCountry()")
+    XCTAssert(presenterSpy.presentCountryLoadingError,"Test GetCountry() should ask PresenterCountryLoadingError()")
     XCTAssert(presenterSpy.presentCountryLoadingCheck,"Test GetCountry() should ask PresenterCountryLoading()")
   }
   

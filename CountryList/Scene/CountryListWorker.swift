@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CountryListStoreProtocol {
-  func getDataCountry(_ completion: @escaping (Result<Country,ApiError>) -> Void)
+  func getDataCountry(_ completion: @escaping (Result<Country,Error>) -> Void)
 }
 
 class CountryListWorker {
@@ -20,7 +20,7 @@ class CountryListWorker {
   }
   
   // MARK: - Business Logic
-  func getStore(_ completion: @escaping (Result<Country,ApiError>) -> Void) {
+  func getStore(_ completion: @escaping (Result<Country,Error>) -> Void) {
     // NOTE: Do the work
     store.getDataCountry {
       completion($0)

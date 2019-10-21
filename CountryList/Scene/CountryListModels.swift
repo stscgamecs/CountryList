@@ -46,4 +46,14 @@ struct CountryList {
       let isShowing: Bool
     }
   }
+  
+  struct LoadingError {
+    struct Response {
+      let urlError: String
+    }
+    
+    struct ViewModel {
+      let urlError: String
+    }
+  }
 }

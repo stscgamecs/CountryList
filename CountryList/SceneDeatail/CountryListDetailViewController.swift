@@ -11,7 +11,7 @@ import UIKit
 protocol CountryListDetailViewControllerInterface: class {
   func displayCity(viewModel: CountryListDetail.GetCity.ViewModel)
   func displayLodingCity(viewModel: CountryListDetail.Loding.ViewModel)
-  func displayLodingCityError()
+  func displayLodingCityError(viewModel: CountryListDetail.LoadingError.ViewModel)
 }
 
 class CountryListDetailViewController: UIViewController, CountryListDetailViewControllerInterface {
@@ -67,8 +67,8 @@ class CountryListDetailViewController: UIViewController, CountryListDetailViewCo
     cityLabel.text = viewModel.cityName
   }
   
-  func displayLodingCityError() {
-    let alert = UIAlertController(title: "Error", message: "error.localizedDescription", preferredStyle: .alert)
+  func displayLodingCityError(viewModel: CountryListDetail.LoadingError.ViewModel) {
+    let alert = UIAlertController(title: "Error", message: "\(viewModel.urlError)", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     self.present(alert, animated: false)
   }

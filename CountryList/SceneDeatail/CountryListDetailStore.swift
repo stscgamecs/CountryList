@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class CountryListDetailStore: CountryListDetailStoreProtocol {
-  func getDataCity(sent city_name:String,_ completion: @escaping (Result<DataCity, ApiError>) -> Void) {
+  func getDataCity(sent city_name:String,_ completion: @escaping (Result<DataCity, Error>) -> Void) {
     guard let todoEndpoint = URL(string: "http://13.229.64.101/noi/detail.php?code=\(city_name)") else {
       return
     }
@@ -19,9 +19,9 @@ class CountryListDetailStore: CountryListDetailStoreProtocol {
     request.httpMethod = "GET"
     
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-      if let _ = error {
+      if let urlError = error {
         DispatchQueue.main.async {
-          completion(.failure(ApiError.networkError))
+          completion(.failure(urlError))
         }
       }
       else if let data = data, let response = response as? HTTPURLResponse {
@@ -33,7 +33,7 @@ class CountryListDetailStore: CountryListDetailStoreProtocol {
             } catch(let error) {
               print("parse JSON failed")
               print(error)
-              completion(Result.failure(ApiError.jsonError))
+              completion(Result.failure(error))
             }
           }
         }

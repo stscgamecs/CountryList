@@ -28,9 +28,11 @@ class CountryListDetailInteractorTest: XCTestCase {
   }
   
   class CountryListDetailPresenterSpy: CountryListDetailPresenterInterface {
+    
+    
     var presentCity = false
     var presentLoadingCityCheck = false
-    
+    var presentLoadingCityError = false
     func presentCity(response: CountryListDetail.GetCity.Response) {
       presentCity = true
     }
@@ -38,12 +40,16 @@ class CountryListDetailInteractorTest: XCTestCase {
     func presentLoadingCity(response: CountryListDetail.Loding.Response) {
       presentLoadingCityCheck = true
     }
+    
+    func presentLoadingCityError(response: CountryListDetail.LoadingError.Response) {
+         presentLoadingCityError = true
+    }
   }
   
   class CountryListDetailWorkerSpy: CountryListDetailStoreProtocol {
     var checkStateFailure:Bool = false
     
-    func getDataCity(sent city_name: String, _ completion: @escaping (Result<DataCity, ApiError>) -> Void) {
+    func getDataCity(sent city_name: String, _ completion: @escaping (Result<DataCity, Error>) -> Void) {
       if checkStateFailure == false {
         completion(Result.success(.init(countryCode: "", countryName: "", capitalName: "")))
       } else {
@@ -92,7 +98,7 @@ class CountryListDetailInteractorTest: XCTestCase {
     interactorDetail.getCity(request: requestSpy)
     
     //then
-    XCTAssert(presenterDetailSpy.presentCity,"Test GetCity() should ask PresentCity()")
+    XCTAssert(presenterDetailSpy.presentLoadingCityError,"Test GetCity() should ask PresentLoadingCityError()")
     XCTAssert(presenterDetailSpy.presentLoadingCityCheck,"Test GetCity() should ask PresentLoadingCity()")
   }
 }

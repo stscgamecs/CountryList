@@ -11,7 +11,7 @@ protocol CountryListViewControllerInterface: class {
   func displayCountry(viewModel: CountryList.CountryModel.ViewModel)
   func displaySearchCountry(viewModel:CountryList.SearchCountry.ViewModel)
   func displayLoading(viewModel: CountryList.Loading.ViewModel)
-  func displayLoadingError()
+  func displayLoadingError(viewModel: CountryList.LoadingError.ViewModel)
 }
 
 class CountryListViewController: UIViewController, CountryListViewControllerInterface {
@@ -81,8 +81,8 @@ class CountryListViewController: UIViewController, CountryListViewControllerInte
     countryTableView.reloadData()
   }
   
-  func displayLoadingError() {
-    let alert = UIAlertController(title: "Error", message: "error.localizedDescription", preferredStyle: .alert)
+  func displayLoadingError(viewModel: CountryList.LoadingError.ViewModel) {
+    let alert = UIAlertController(title: "Error", message: "\(viewModel.urlError)", preferredStyle: .alert)
     self.present(alert, animated: false)
   }
   
