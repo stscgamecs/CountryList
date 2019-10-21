@@ -29,10 +29,8 @@ class CountryListInteractor: CountryListInteractorInterface {
         self?.presenter.presentCountry(response: response)
       } else {
         print(ApiError.jsonError)
-        DispatchQueue.main.async {
           let response = CountryList.CountryModel.Response(country: self?.modelCountry)
           self?.presenter.presentCountry(response: response)
-        }
       }
     }
   }

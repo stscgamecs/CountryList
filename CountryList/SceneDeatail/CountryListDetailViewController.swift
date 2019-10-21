@@ -68,6 +68,7 @@ class CountryListDetailViewController: UIViewController, CountryListDetailViewCo
   }
   func displayLodingCityError() {
      let alert = UIAlertController(title: "Error", message: "error.localizedDescription", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
      self.present(alert, animated: false)
    }
   // MARK: - Router

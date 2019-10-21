@@ -25,7 +25,9 @@ class CountryListStore: CountryListStoreProtocol {
     
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
       if let _ = error {
+        DispatchQueue.main.async {
         completion(.failure(ApiError.jsonError))
+        }
       }
       else if let data = data, let response = response as? HTTPURLResponse {
         DispatchQueue.main.async {

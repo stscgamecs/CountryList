@@ -20,11 +20,12 @@ class CountryListDetailStore: CountryListDetailStoreProtocol {
     
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
       if let _ = error {
-        completion(.failure(ApiError.networkError))
+        DispatchQueue.main.async {
+          completion(.failure(ApiError.networkError))
+        }
       }
       else if let data = data, let response = response as? HTTPURLResponse {
         DispatchQueue.main.async {
-          
           if response.statusCode == 200 {
             do {
               let countryList: City = try JSONDecoder().decode(City.self, from: data)
