@@ -14,6 +14,7 @@ protocol CountryListInteractorInterface {
 }
 
 class CountryListInteractor: CountryListInteractorInterface {
+  
   var presenter: CountryListPresenterInterface!
   var worker: CountryListWorker?
   var modelCountry: Country?
@@ -21,12 +22,13 @@ class CountryListInteractor: CountryListInteractorInterface {
   // MARK: - Business logic
   func getCountry(request: CountryList.CountryModel.Request) {
     presenter.presentCountryLoading(response: CountryList.Loading.Response(isShowing: false))
-    worker?.getStore { [weak self] in
-      if case let Result.success(data) = $0 {
+    worker?.getStore { [weak self] result in
+      switch result {
+      case .success(let data):
         self?.modelCountry = data
         let response = CountryList.CountryModel.Response(country: self?.modelCountry)
         self?.presenter.presentCountry(response: response)
-      } else if case let Result.failure(data) = $0 {
+      case .failure(let data):
         let response = CountryList.LoadingError.Response(urlError: "\(data)")
         self?.presenter.presentCountryLoadingError(response: response)
       }

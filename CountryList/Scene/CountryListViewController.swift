@@ -84,6 +84,7 @@ class CountryListViewController: UIViewController, CountryListViewControllerInte
   func displayLoadingError(viewModel: CountryList.LoadingError.ViewModel) {
     let alert = UIAlertController(title: "Error", message: "\(viewModel.urlError)", preferredStyle: .alert)
     self.present(alert, animated: false)
+    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
   }
   
   @IBAction func textFieldsearch(_ sender: UITextField) {

@@ -35,6 +35,5 @@ class CountryListDetailPresenter: CountryListDetailPresenterInterface {
   
   func presentLoadingCityError(response: CountryListDetail.LoadingError.Response) {
     viewController.displayLodingCityError(viewModel: CountryListDetail.LoadingError.ViewModel(urlError: response.urlError))
-   }
-   
+  }
 }

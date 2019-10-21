@@ -27,13 +27,15 @@ class CountryListDetailInteractor: CountryListDetailInteractorInterface {
     let response = CountryListDetail.Loding.Response(isShowing: false)
     presenter.presentLoadingCity(response: response)
     
-    worker?.getStore(sent: codeName.countryCode) { [weak self] in
-      if case let Result.success(data) = $0 {
+    worker?.getStore(sent: codeName.countryCode) { [weak self] result in
+      switch result {
+      case .success(let data):
         self?.model?.countryCode = data.countryCode
+        self?.model?.countryCode = data.countryCode
+        
         let response = CountryListDetail.GetCity.Response(city: data)
         self?.presenter.presentCity(response: response)
-      } else if case let Result.failure(data) = $0 {
-        print(ApiError.jsonError)
+      case .failure(let data):
         self?.presenter.presentLoadingCityError(response: CountryListDetail.LoadingError.Response(urlError: "\(data)"))
       }
     }
