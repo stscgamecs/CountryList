@@ -24,7 +24,7 @@ class CountryListStore: CountryListStoreProtocol {
     
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
-
+    
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
       if let urlError = error {
         DispatchQueue.main.async {

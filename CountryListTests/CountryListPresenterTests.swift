@@ -70,7 +70,7 @@ class CountryListPresenterTests: XCTestCase {
     XCTAssert(viewModelSpy.displaySearchCountry,"Test PresentCountry() should ask ViewController DisplayCountry()")
   }
   
-  func testPresentCountryLoadingAskViewControllerToViewControllerDisplayLoading(){
+  func testPresentCountryLoadingAskViewControllerToViewControllerDisplayLoading() {
     //Given
     let viewModelSpy = CountryListViewControllerSpy()
     presenter.viewController = viewModelSpy
@@ -81,7 +81,8 @@ class CountryListPresenterTests: XCTestCase {
     //then
     XCTAssert(viewModelSpy.displayLoading,"Test PresentCountryLoading ask ViewController displayLoading())")
   }
-  func testPresentLoadingErrorAskViewControllerToViewControllerDisplayLoadingError(){
+  
+  func testPresentLoadingErrorAskViewControllerToViewControllerDisplayLoadingError() { 
     //Given
     let viewModelSpy = CountryListViewControllerSpy()
     presenter.viewController = viewModelSpy
@@ -92,5 +93,4 @@ class CountryListPresenterTests: XCTestCase {
     //then
     XCTAssert(viewModelSpy.displayLoadingErrorTest,"Test PresentCountryLoadingError ask ViewController displayLoadingError())")
   }
-  
 }

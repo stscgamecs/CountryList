@@ -28,7 +28,6 @@ class CountryListInteractorTests: XCTestCase {
   }
   
   class CountryListPresenterSpy:CountryListPresenterInterface {
-    
     var presentCountry = false
     var presentSearchCountry = false
     var presentCountryLoadingCheck = false
@@ -45,17 +44,17 @@ class CountryListInteractorTests: XCTestCase {
       presentCountryLoadingCheck = true
     }
     func presentCountryLoadingError(response: CountryList.LoadingError.Response) {
-        presentCountryLoadingError = true
-      }
+      presentCountryLoadingError = true
+    }
   }
   
   class CountryListWorkerSpy: CountryListStoreProtocol {
     var checkStateFailure:Bool = false
     
     func getDataCountry(_ completion: @escaping (Result<Country, Error>) -> Void) {
-      if checkStateFailure == false{
+      if checkStateFailure == false {
         completion(Result.success(.init(data: [])))
-      }else{
+      } else {
         completion(Result.failure(ApiError.jsonError))
       }
     }
@@ -68,7 +67,6 @@ class CountryListInteractorTests: XCTestCase {
     
     let presenterSpy = CountryListPresenterSpy()
     interactor.presenter = presenterSpy
-    
     
     //when
     let requestSpy = CountryList.CountryModel.Request()

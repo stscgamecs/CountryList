@@ -29,7 +29,6 @@ class CountryListDetailInteractorTest: XCTestCase {
   
   class CountryListDetailPresenterSpy: CountryListDetailPresenterInterface {
     
-    
     var presentCity = false
     var presentLoadingCityCheck = false
     var presentLoadingCityError = false
@@ -79,6 +78,7 @@ class CountryListDetailInteractorTest: XCTestCase {
     XCTAssert(presenterDetailSpy.presentCity,"Test GetCity() should ask PresentCity()")
     XCTAssert(presenterDetailSpy.presentLoadingCityCheck,"Test GetCity() should ask PresentLoadingCity()")
   }
+  
   func testGetCityAskPresenterToPresentCityWhenFails() {
     //Given
     let store = CountryListDetailWorkerSpy()
