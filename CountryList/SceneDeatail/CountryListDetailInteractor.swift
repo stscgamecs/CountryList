@@ -31,8 +31,6 @@ class CountryListDetailInteractor: CountryListDetailInteractorInterface {
       switch result {
       case .success(let data):
         self?.model?.countryCode = data.countryCode
-        self?.model?.countryCode = data.countryCode
-        
         let response = CountryListDetail.GetCity.Response(city: data)
         self?.presenter.presentCity(response: response)
       case .failure(let data):
