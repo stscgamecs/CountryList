@@ -93,7 +93,7 @@ class CountryListInteractorTests: XCTestCase {
     interactor.getCountry(request: requestSpy)
     
     //then
-    XCTAssertFalse(presenterSpy.presentCountry,"Test GetCountry() should ask PresenterCountry()")
+    XCTAssert(presenterSpy.presentCountry,"Test GetCountry() should ask PresenterCountry()")
     XCTAssert(presenterSpy.presentCountryLoadingCheck,"Test GetCountry() should ask PresenterCountryLoading()")
   }
   

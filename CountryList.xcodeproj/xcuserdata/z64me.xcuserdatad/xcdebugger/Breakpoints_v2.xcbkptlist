@@ -14,8 +14,8 @@
             filePath = "CountryList/Scene/CountryListStore.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "getDataCountry(_:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -20,9 +20,10 @@ class CountryListStore: CountryListStoreProtocol {
     guard let url = URL(string: "http://13.229.64.101/noi/default.php") else {
       return
     }
+    
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
-    
+
     let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
       if let _ = error {
         DispatchQueue.main.async {

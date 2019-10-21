@@ -46,6 +46,8 @@ class CountryListDetailInteractorTest: XCTestCase {
     func getDataCity(sent city_name: String, _ completion: @escaping (Result<DataCity, ApiError>) -> Void) {
       if checkStateFailure == false {
         completion(Result.success(.init(countryCode: "", countryName: "", capitalName: "")))
+      } else {
+        completion(Result.failure(ApiError.jsonError))
       }
     }
   }
@@ -59,6 +61,28 @@ class CountryListDetailInteractorTest: XCTestCase {
     let modelSpy: DataCountry = .init(countryCode: "Th", countryName: "Thiland")
     interactorDetail.model = modelSpy
     interactorDetail.model?.countryCode = "Th"
+    
+    let presenterDetailSpy = CountryListDetailPresenterSpy()
+    interactorDetail.presenter = presenterDetailSpy
+    
+    //when
+    let requestSpy = CountryListDetail.GetCity.Request()
+    interactorDetail.getCity(request: requestSpy)
+    
+    //then
+    XCTAssert(presenterDetailSpy.presentCity,"Test GetCity() should ask PresentCity()")
+    XCTAssert(presenterDetailSpy.presentLoadingCityCheck,"Test GetCity() should ask PresentLoadingCity()")
+  }
+  func testGetCityAskPresenterToPresentCityWhenFails() {
+    //Given
+    let store = CountryListDetailWorkerSpy()
+    store.checkStateFailure = true
+    let workerSpy = CountryListDetailWorker(store: store)
+    interactorDetail.worker = workerSpy
+    
+    let modelSpy: DataCountry = .init(countryCode: "", countryName: "")
+    interactorDetail.model = modelSpy
+    interactorDetail.model?.countryCode = ""
     
     let presenterDetailSpy = CountryListDetailPresenterSpy()
     interactorDetail.presenter = presenterDetailSpy

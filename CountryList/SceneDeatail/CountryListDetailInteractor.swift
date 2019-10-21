@@ -20,7 +20,7 @@ class CountryListDetailInteractor: CountryListDetailInteractorInterface {
   
   // MARK: - Business logic
   func getCity(request: CountryListDetail.GetCity.Request) {
-    guard let codeName = model else{
+    guard let codeName = model else {
       return
     }
     

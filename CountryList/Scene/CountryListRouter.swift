@@ -23,7 +23,7 @@ class CountryListRouter: CountryListRouterInput {
   // MARK: - Communication
   func passDataToNextScene(segue: UIStoryboardSegue,sender: Any?) {
     if segue.identifier == "showDetail" {
-      if let sender = sender as? DataCountry{
+      if let sender = sender as? DataCountry {
         passDataToSomewhereScene(segue: segue,sender: sender)
       }
     }

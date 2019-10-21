@@ -15,7 +15,7 @@ protocol CountryListViewControllerInterface: class {
 }
 
 class CountryListViewController: UIViewController, CountryListViewControllerInterface {
-
+  
   var interactor: CountryListInteractorInterface!
   var router: CountryListRouter!
   
@@ -82,9 +82,10 @@ class CountryListViewController: UIViewController, CountryListViewControllerInte
   }
   
   func displayLoadingError() {
-   let alert = UIAlertController(title: "Error", message: "error.localizedDescription", preferredStyle: .alert)
-  self.present(alert, animated: false)
+    let alert = UIAlertController(title: "Error", message: "error.localizedDescription", preferredStyle: .alert)
+    self.present(alert, animated: false)
   }
+  
   @IBAction func textFieldsearch(_ sender: UITextField) {
     let requset = CountryList.SearchCountry.Request(searchCountry: sender.text)
     interactor.getSearch(request: requset)

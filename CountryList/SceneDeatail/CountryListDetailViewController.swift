@@ -66,11 +66,12 @@ class CountryListDetailViewController: UIViewController, CountryListDetailViewCo
     countryLabel.text = viewModel.countryName
     cityLabel.text = viewModel.cityName
   }
+  
   func displayLodingCityError() {
-     let alert = UIAlertController(title: "Error", message: "error.localizedDescription", preferredStyle: .alert)
+    let alert = UIAlertController(title: "Error", message: "error.localizedDescription", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-     self.present(alert, animated: false)
-   }
+    self.present(alert, animated: false)
+  }
   // MARK: - Router
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     router.passDataToNextScene(segue: segue)

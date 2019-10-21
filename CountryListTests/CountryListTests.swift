@@ -43,7 +43,6 @@ class CountryListDetailPresenterTests: XCTestCase {
     let viewModelSpy = CountryListDetailViewControllerSpy()
     presenterDetail.viewController = viewModelSpy
     
-    
     //When
     let responseSpy = CountryListDetail.GetCity.Response(city: DataCity.init(countryCode: "Th", countryName: "Thai", capitalName: "Bankkok"))
     presenterDetail.presentCity(response: responseSpy)
@@ -72,7 +71,6 @@ class CountryListDetailPresenterTests: XCTestCase {
     
     //when
     presenterDetail.presentCity(response: CountryListDetail.GetCity.Response(city: DataCity(countryCode: "", countryName: "", capitalName: "" )))
-    
     
     //Then
     XCTAssert(viewModelSpy.displayLodingCityErrorTest,"Test PresentCityError() should ask ViewController LodingCityError()")
